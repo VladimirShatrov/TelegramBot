@@ -132,6 +132,13 @@ def main(message):
     bot.reply_to(message, 'Список вопросов', reply_markup=markup)
 
 
+@bot.message_handler(commands=['questions_ans'])
+def main(message):
+    markup = types.InlineKeyboardMarkup()
+    markup.add(types.InlineKeyboardButton('Список вопросов и ответов', url='http://c2072.myvds.org/~fit12_29/'))
+    bot.reply_to(message, 'Список вопросов и тветов', reply_markup=markup)
+
+
 @bot.message_handler(commands=['random'])
 def main(message):
     first_num = random.randint(0, 50)
