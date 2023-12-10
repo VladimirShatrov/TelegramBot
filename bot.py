@@ -149,12 +149,23 @@ def main(message):
     while (second_num == first_num):
         second_num = random.randint(0, 50)
     second = second_num
-    bot.send_message(message.chat.id, ques[first_num] + "\n" + ques[second_num])
-    bot.register_next_step_handler(message, answer_random)
+    markup = types.InlineKeyboardMarkup()
+    btn1 = types.InlineKeyboardButton('Посмотреть ответы на оба вопроса', callback_data='one_and_two')
+    btn2 = types.InlineKeyboardButton('Посмотреть ответ на первый вопрос', callback_data='one')
+    btn3 = types.InlineKeyboardButton('Посмотреть ответ на второй вопрос', callback_data='two')
+    markup.row(btn1)
+    markup.row(btn2, btn3)
+    bot.send_message(message.chat.id, ques[first_num] + "\n" + "\n" + ques[second_num], reply_markup=markup)
 
 
-def answer_random(message):
-    bot.send_message(message.chat.id, ans[first] + "\n" + "\n" + ans[second])
+@bot.callback_query_handler(func=lambda callback: True)
+def answer_random(callback):
+    if callback.data == 'one_and_two':
+        bot.send_message(callback.message.chat.id, ans[first] + "\n" + "\n" + ans[second])
+    elif callback.data == 'two':
+        bot.send_message(callback.message.chat.id, ans[second])
+    elif callback.data == 'one':
+        bot.send_message(callback.message.chat.id, ans[first])
 
 
 @bot.message_handler(commands=['1'])
