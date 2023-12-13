@@ -4,6 +4,7 @@
 import telebot
 from telebot import types
 import random
+import time
 
 bot = telebot.TeleBot('6878576355:AAE2VQUpbyQcKUV1EgTpQX4fXbhXNFpW6iM')
 
@@ -420,4 +421,10 @@ def site(message):
     bot.send_message(message.chat.id, ques[50] + '\n' + '\n' + ans[50])
 
 
-bot.polling(none_stop=True)
+while True:
+    try:
+        bot.polling(none_stop=True)
+    except Exception as e:
+        print(e)
+
+        time.sleep(15)
