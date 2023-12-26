@@ -5,8 +5,9 @@ import telebot
 from telebot import types
 import random
 import time
+from config import TOKEN
 
-bot = telebot.TeleBot('6878576355:AAE2VQUpbyQcKUV1EgTpQX4fXbhXNFpW6iM')
+bot = telebot.TeleBot(TOKEN)
 
 
 ques = ['Что такое LA? В каких единицах измеряется?',
