@@ -1,6 +1,5 @@
 # -*- coding: utf8 -*-
 
-
 import telebot
 from telebot import types
 import random
